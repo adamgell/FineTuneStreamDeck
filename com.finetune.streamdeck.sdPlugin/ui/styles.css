@@ -1,0 +1,99 @@
+:root {
+  color-scheme: dark;
+  font:
+    13px -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  color: #e7ecee;
+  background: #20262b;
+}
+body {
+  margin: 16px;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #3a4850;
+  padding-bottom: 12px;
+}
+header strong {
+  font-size: 19px;
+  color: #43e0bd;
+}
+#status {
+  font-size: 11px;
+  color: #b5c4ca;
+}
+label {
+  display: block;
+  margin: 13px 0 5px;
+  color: #dce3e6;
+}
+select,
+input,
+textarea,
+button {
+  box-sizing: border-box;
+  border: 1px solid #465760;
+  border-radius: 5px;
+  background: #111b22;
+  color: #edf4f5;
+  padding: 8px;
+  font: inherit;
+}
+select,
+input,
+textarea {
+  display: block;
+  width: 100%;
+  margin-top: 5px;
+}
+textarea {
+  min-height: 90px;
+}
+button {
+  cursor: pointer;
+}
+button:hover {
+  border-color: #43e0bd;
+}
+.buttons {
+  display: flex;
+  gap: 8px;
+  margin-top: 15px;
+}
+#save {
+  background: #287866;
+  border-color: #43e0bd;
+}
+.hint {
+  font-size: 11px;
+  line-height: 1.5;
+  color: #a9bbc3;
+}
+#result {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  color: #ffbf7a;
+  font-size: 12px;
+  margin-top: 10px;
+}
+.bands {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+}
+.scene-row {
+  border: 1px solid #465760;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 6px;
+}
+.small {
+  font-size: 11px;
+}
+input[type='checkbox'] {
+  width: auto;
+  display: inline-block;
+}

@@ -1,0 +1,387 @@
+{
+  "UUID": "com.finetune.streamdeck",
+  "Name": "FineTune",
+  "Description": "Complete local FineTune audio control, live feedback and shared Stream Deck profiles. Requires the FineTune automation API.",
+  "Author": "Adam Gell",
+  "Version": "0.1.0.2",
+  "SDKVersion": 3,
+  "CodePath": "bin/plugin.js",
+  "Icon": "imgs/plugin",
+  "Category": "FineTune",
+  "CategoryIcon": "imgs/category",
+  "URL": "https://github.com/ronitsingh10/FineTune",
+  "Software": {
+    "MinimumVersion": "7.1"
+  },
+  "OS": [
+    {
+      "Platform": "mac",
+      "MinimumVersion": "15.4"
+    }
+  ],
+  "Nodejs": {
+    "Version": "20"
+  },
+  "PropertyInspectorPath": "ui/index.html",
+  "Actions": [
+    {
+      "UUID": "com.finetune.streamdeck.command",
+      "Name": "FineTune Command",
+      "Icon": "imgs/action",
+      "Tooltip": "FineTune Command using FineTune automation.",
+      "Controllers": [
+        "Keypad",
+        "Encoder"
+      ],
+      "States": [
+        {
+          "Image": "imgs/action",
+          "TitleAlignment": "middle",
+          "FontSize": 10
+        },
+        {
+          "Image": "imgs/muted",
+          "TitleAlignment": "middle",
+          "FontSize": 10
+        }
+      ],
+      "Encoder": {
+        "layout": "$B1",
+        "TriggerDescription": {
+          "Rotate": "Adjust value",
+          "Push": "Toggle mute (volume controls)",
+          "Touch": "Toggle mute (volume controls)"
+        }
+      }
+    },
+    {
+      "UUID": "com.finetune.streamdeck.app-volume",
+      "Name": "App Volume",
+      "Icon": "imgs/action",
+      "Tooltip": "App Volume using FineTune automation.",
+      "Controllers": [
+        "Keypad",
+        "Encoder"
+      ],
+      "States": [
+        {
+          "Image": "imgs/action",
+          "TitleAlignment": "middle",
+          "FontSize": 10
+        },
+        {
+          "Image": "imgs/muted",
+          "TitleAlignment": "middle",
+          "FontSize": 10
+        }
+      ],
+      "Encoder": {
+        "layout": "$B1",
+        "TriggerDescription": {
+          "Rotate": "Adjust value",
+          "Push": "Toggle mute (volume controls)",
+          "Touch": "Toggle mute (volume controls)"
+        }
+      }
+    },
+    {
+      "UUID": "com.finetune.streamdeck.app-mute",
+      "Name": "App Mute",
+      "Icon": "imgs/action",
+      "Tooltip": "App Mute using FineTune automation.",
+      "Controllers": [
+        "Keypad"
+      ],
+      "States": [
+        {
+          "Image": "imgs/action",
+          "TitleAlignment": "middle",
+          "FontSize": 10
+        },
+        {
+          "Image": "imgs/muted",
+          "TitleAlignment": "middle",
+          "FontSize": 10
+        }
+      ]
+    },
+    {
+      "UUID": "com.finetune.streamdeck.app-boost",
+      "Name": "App Boost",
+      "Icon": "imgs/action",
+      "Tooltip": "App Boost using FineTune automation.",
+      "Controllers": [
+        "Keypad"
+      ],
+      "States": [
+        {
+          "Image": "imgs/action",
+          "TitleAlignment": "middle",
+          "FontSize": 10
+        },
+        {
+          "Image": "imgs/muted",
+          "TitleAlignment": "middle",
+          "FontSize": 10
+        }
+      ]
+    },
+    {
+      "UUID": "com.finetune.streamdeck.routing",
+      "Name": "App Routing",
+      "Icon": "imgs/action",
+      "Tooltip": "App Routing using FineTune automation.",
+      "Controllers": [
+        "Keypad"
+      ],
+      "States": [
+        {
+          "Image": "imgs/action",
+          "TitleAlignment": "middle",
+          "FontSize": 10
+        },
+        {
+          "Image": "imgs/muted",
+          "TitleAlignment": "middle",
+          "FontSize": 10
+        }
+      ]
+    },
+    {
+      "UUID": "com.finetune.streamdeck.device-volume",
+      "Name": "Device Volume",
+      "Icon": "imgs/action",
+      "Tooltip": "Device Volume using FineTune automation.",
+      "Controllers": [
+        "Keypad",
+        "Encoder"
+      ],
+      "States": [
+        {
+          "Image": "imgs/action",
+          "TitleAlignment": "middle",
+          "FontSize": 10
+        },
+        {
+          "Image": "imgs/muted",
+          "TitleAlignment": "middle",
+          "FontSize": 10
+        }
+      ],
+      "Encoder": {
+        "layout": "$B1",
+        "TriggerDescription": {
+          "Rotate": "Adjust value",
+          "Push": "Toggle mute (volume controls)",
+          "Touch": "Toggle mute (volume controls)"
+        }
+      }
+    },
+    {
+      "UUID": "com.finetune.streamdeck.device-mute",
+      "Name": "Device Mute",
+      "Icon": "imgs/action",
+      "Tooltip": "Device Mute using FineTune automation.",
+      "Controllers": [
+        "Keypad"
+      ],
+      "States": [
+        {
+          "Image": "imgs/action",
+          "TitleAlignment": "middle",
+          "FontSize": 10
+        },
+        {
+          "Image": "imgs/muted",
+          "TitleAlignment": "middle",
+          "FontSize": 10
+        }
+      ]
+    },
+    {
+      "UUID": "com.finetune.streamdeck.device-select",
+      "Name": "Select Audio Device",
+      "Icon": "imgs/action",
+      "Tooltip": "Select Audio Device using FineTune automation.",
+      "Controllers": [
+        "Keypad"
+      ],
+      "States": [
+        {
+          "Image": "imgs/action",
+          "TitleAlignment": "middle",
+          "FontSize": 10
+        },
+        {
+          "Image": "imgs/muted",
+          "TitleAlignment": "middle",
+          "FontSize": 10
+        }
+      ]
+    },
+    {
+      "UUID": "com.finetune.streamdeck.eq-band",
+      "Name": "EQ Band",
+      "Icon": "imgs/action",
+      "Tooltip": "EQ Band using FineTune automation.",
+      "Controllers": [
+        "Keypad",
+        "Encoder"
+      ],
+      "States": [
+        {
+          "Image": "imgs/action",
+          "TitleAlignment": "middle",
+          "FontSize": 10
+        },
+        {
+          "Image": "imgs/muted",
+          "TitleAlignment": "middle",
+          "FontSize": 10
+        }
+      ],
+      "Encoder": {
+        "layout": "$B1",
+        "TriggerDescription": {
+          "Rotate": "Adjust value",
+          "Push": "Toggle mute (volume controls)",
+          "Touch": "Toggle mute (volume controls)"
+        }
+      }
+    },
+    {
+      "UUID": "com.finetune.streamdeck.eq-preset",
+      "Name": "EQ Preset",
+      "Icon": "imgs/action",
+      "Tooltip": "EQ Preset using FineTune automation.",
+      "Controllers": [
+        "Keypad"
+      ],
+      "States": [
+        {
+          "Image": "imgs/action",
+          "TitleAlignment": "middle",
+          "FontSize": 10
+        },
+        {
+          "Image": "imgs/muted",
+          "TitleAlignment": "middle",
+          "FontSize": 10
+        }
+      ]
+    },
+    {
+      "UUID": "com.finetune.streamdeck.autoeq",
+      "Name": "Headphone Correction",
+      "Icon": "imgs/action",
+      "Tooltip": "Headphone Correction using FineTune automation.",
+      "Controllers": [
+        "Keypad"
+      ],
+      "States": [
+        {
+          "Image": "imgs/action",
+          "TitleAlignment": "middle",
+          "FontSize": 10
+        },
+        {
+          "Image": "imgs/muted",
+          "TitleAlignment": "middle",
+          "FontSize": 10
+        }
+      ]
+    },
+    {
+      "UUID": "com.finetune.streamdeck.loudness",
+      "Name": "Loudness",
+      "Icon": "imgs/action",
+      "Tooltip": "Loudness using FineTune automation.",
+      "Controllers": [
+        "Keypad"
+      ],
+      "States": [
+        {
+          "Image": "imgs/action",
+          "TitleAlignment": "middle",
+          "FontSize": 10
+        },
+        {
+          "Image": "imgs/muted",
+          "TitleAlignment": "middle",
+          "FontSize": 10
+        }
+      ]
+    },
+    {
+      "UUID": "com.finetune.streamdeck.management",
+      "Name": "App Management",
+      "Icon": "imgs/action",
+      "Tooltip": "App Management using FineTune automation.",
+      "Controllers": [
+        "Keypad"
+      ],
+      "States": [
+        {
+          "Image": "imgs/action",
+          "TitleAlignment": "middle",
+          "FontSize": 10
+        },
+        {
+          "Image": "imgs/muted",
+          "TitleAlignment": "middle",
+          "FontSize": 10
+        }
+      ]
+    },
+    {
+      "UUID": "com.finetune.streamdeck.popup",
+      "Name": "FineTune Popup",
+      "Icon": "imgs/action",
+      "Tooltip": "FineTune Popup using FineTune automation.",
+      "Controllers": [
+        "Keypad"
+      ],
+      "States": [
+        {
+          "Image": "imgs/action",
+          "TitleAlignment": "middle",
+          "FontSize": 10
+        },
+        {
+          "Image": "imgs/muted",
+          "TitleAlignment": "middle",
+          "FontSize": 10
+        }
+      ]
+    },
+    {
+      "UUID": "com.finetune.streamdeck.scene",
+      "Name": "Audio Scene",
+      "Icon": "imgs/action",
+      "Tooltip": "Audio Scene using FineTune automation.",
+      "Controllers": [
+        "Keypad"
+      ],
+      "States": [
+        {
+          "Image": "imgs/action",
+          "TitleAlignment": "middle",
+          "FontSize": 10
+        },
+        {
+          "Image": "imgs/muted",
+          "TitleAlignment": "middle",
+          "FontSize": 10
+        }
+      ]
+    }
+  ],
+  "Profiles": [
+    {
+      "Name": "profiles/finetune-xl",
+      "DeviceType": 2,
+      "Readonly": false,
+      "AutoInstall": false
+    }
+  ]
+}

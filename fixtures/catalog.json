@@ -1,0 +1,1697 @@
+{
+  "instanceId": "fixture-instance",
+  "methods": [
+    {
+      "destructive": false,
+      "fields": [],
+      "available": true,
+      "method": "api.describe",
+      "title": "API Capabilities"
+    },
+    {
+      "destructive": false,
+      "fields": [],
+      "available": true,
+      "method": "state.get",
+      "title": "Full State"
+    },
+    {
+      "destructive": false,
+      "fields": [],
+      "available": true,
+      "title": "Subscribe to Changes",
+      "method": "events.subscribe"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "string",
+          "required": true,
+          "name": "operationId"
+        }
+      ],
+      "available": true,
+      "title": "Operation Result",
+      "method": "operation.get"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "commands",
+          "required": true,
+          "name": "commands"
+        },
+        {
+          "type": "boolean",
+          "required": false,
+          "name": "continueOnError"
+        }
+      ],
+      "available": true,
+      "title": "Run Scene",
+      "method": "batch.execute"
+    },
+    {
+      "destructive": false,
+      "fields": [],
+      "available": true,
+      "method": "app.list",
+      "title": "List Apps"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "target",
+          "required": true,
+          "name": "target",
+          "source": "apps"
+        }
+      ],
+      "available": true,
+      "method": "app.get",
+      "title": "App State"
+    },
+    {
+      "title": "Set App Volume",
+      "destructive": false,
+      "fields": [
+        {
+          "type": "target",
+          "required": true,
+          "name": "target",
+          "source": "apps"
+        },
+        {
+          "type": "number",
+          "required": true,
+          "minimum": 0,
+          "name": "percent",
+          "maximum": 100
+        }
+      ],
+      "units": "gain %",
+      "available": true,
+      "method": "app.volume.set"
+    },
+    {
+      "units": "%",
+      "fields": [
+        {
+          "type": "target",
+          "required": true,
+          "name": "target",
+          "source": "apps"
+        },
+        {
+          "type": "string",
+          "required": true,
+          "name": "domain",
+          "choices": [
+            "slider",
+            "percent"
+          ]
+        },
+        {
+          "type": "number",
+          "maximum": 100,
+          "minimum": -100,
+          "name": "delta",
+          "required": true
+        }
+      ],
+      "available": true,
+      "dialParameter": "delta",
+      "method": "app.volume.step",
+      "destructive": false,
+      "title": "Step App Volume"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "target",
+          "required": true,
+          "name": "target",
+          "source": "apps"
+        },
+        {
+          "type": "boolean",
+          "required": true,
+          "name": "muted"
+        }
+      ],
+      "available": true,
+      "title": "Set App Mute",
+      "method": "app.mute.set"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "target",
+          "required": true,
+          "name": "target",
+          "source": "apps"
+        }
+      ],
+      "available": true,
+      "title": "Toggle App Mute",
+      "method": "app.mute.toggle"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "target",
+          "required": true,
+          "name": "target",
+          "source": "apps"
+        },
+        {
+          "type": "number",
+          "required": true,
+          "minimum": 1,
+          "maximum": 4,
+          "name": "boost"
+        }
+      ],
+      "available": true,
+      "method": "app.boost.set",
+      "title": "Set App Boost"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "target",
+          "required": true,
+          "name": "target",
+          "source": "apps"
+        }
+      ],
+      "available": true,
+      "method": "app.boost.cycle",
+      "title": "Cycle App Boost"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "target",
+          "required": true,
+          "name": "target",
+          "source": "apps"
+        }
+      ],
+      "available": true,
+      "title": "Reset App Volume and Mute",
+      "method": "app.audio.reset"
+    },
+    {
+      "destructive": false,
+      "fields": [],
+      "available": true,
+      "title": "List Devices",
+      "method": "device.list"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "target",
+          "required": true,
+          "name": "target",
+          "source": "devices"
+        }
+      ],
+      "available": true,
+      "method": "device.get",
+      "title": "Device State"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "target",
+          "required": true,
+          "name": "target",
+          "source": "devices"
+        },
+        {
+          "type": "number",
+          "minimum": 0,
+          "required": true,
+          "name": "percent",
+          "maximum": 100
+        }
+      ],
+      "available": true,
+      "title": "Set Device Volume",
+      "method": "device.volume.set"
+    },
+    {
+      "title": "Step Device Volume",
+      "fields": [
+        {
+          "type": "target",
+          "required": true,
+          "name": "target",
+          "source": "devices"
+        },
+        {
+          "type": "number",
+          "minimum": -100,
+          "maximum": 100,
+          "name": "delta",
+          "required": true
+        }
+      ],
+      "destructive": false,
+      "available": true,
+      "method": "device.volume.step",
+      "dialParameter": "delta",
+      "units": "%"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "target",
+          "required": true,
+          "name": "target",
+          "source": "devices"
+        },
+        {
+          "type": "boolean",
+          "required": true,
+          "name": "muted"
+        }
+      ],
+      "available": true,
+      "title": "Set Device Mute",
+      "method": "device.mute.set"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "target",
+          "required": true,
+          "name": "target",
+          "source": "devices"
+        }
+      ],
+      "available": true,
+      "method": "device.mute.toggle",
+      "title": "Toggle Device Mute"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "target",
+          "required": true,
+          "name": "target",
+          "source": "devices"
+        }
+      ],
+      "available": true,
+      "method": "device.default.set",
+      "title": "Select Default Device"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "target",
+          "required": true,
+          "name": "target",
+          "source": "devices"
+        },
+        {
+          "type": "boolean",
+          "required": true,
+          "name": "hidden"
+        }
+      ],
+      "available": true,
+      "method": "device.hidden.set",
+      "title": "Hide Device"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "string",
+          "required": true,
+          "name": "direction",
+          "choices": [
+            "input",
+            "output"
+          ]
+        },
+        {
+          "type": "strings",
+          "required": true,
+          "name": "deviceUIDs",
+          "source": "devices",
+          "ordered": true
+        }
+      ],
+      "available": true,
+      "title": "Set Device Priority",
+      "method": "device.priority.set"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "target",
+          "required": true,
+          "name": "target",
+          "source": "devices"
+        },
+        {
+          "type": "string",
+          "required": true,
+          "name": "symbol"
+        }
+      ],
+      "available": true,
+      "method": "device.icon.set",
+      "title": "Set Device Icon"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "target",
+          "required": true,
+          "name": "target",
+          "source": "devices"
+        }
+      ],
+      "available": true,
+      "method": "device.icon.clear",
+      "title": "Reset Device Icon"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "target",
+          "required": true,
+          "name": "target",
+          "source": "devices"
+        },
+        {
+          "type": "string",
+          "required": true,
+          "name": "backend",
+          "choices": [
+            "auto",
+            "software"
+          ]
+        }
+      ],
+      "available": true,
+      "title": "Select Volume Backend",
+      "method": "device.volumeBackend.set"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "target",
+          "required": true,
+          "name": "target",
+          "source": "devices"
+        },
+        {
+          "type": "number",
+          "maximum": 768000,
+          "required": true,
+          "minimum": 8000,
+          "name": "sampleRate"
+        }
+      ],
+      "available": true,
+      "title": "Set Sample Rate",
+      "method": "device.sampleRate.set"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "boolean",
+          "required": true,
+          "name": "enabled"
+        },
+        {
+          "type": "string",
+          "required": false,
+          "name": "deviceUID",
+          "source": "inputs"
+        }
+      ],
+      "available": true,
+      "method": "input.lock.set",
+      "title": "Set Input Lock"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "number",
+          "maximum": 100,
+          "minimum": 0,
+          "name": "percent",
+          "required": true
+        }
+      ],
+      "available": true,
+      "title": "Set Alert Volume",
+      "method": "alert.volume.set"
+    },
+    {
+      "units": "%",
+      "fields": [
+        {
+          "type": "number",
+          "minimum": -100,
+          "maximum": 100,
+          "name": "delta",
+          "required": true
+        }
+      ],
+      "destructive": false,
+      "dialParameter": "delta",
+      "method": "alert.volume.step",
+      "available": true,
+      "title": "Step Alert Volume"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "boolean",
+          "required": true,
+          "name": "followDefault"
+        },
+        {
+          "type": "string",
+          "required": false,
+          "name": "deviceUID",
+          "source": "outputs"
+        }
+      ],
+      "available": true,
+      "title": "Route Alert Audio",
+      "method": "alert.routing.set"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "target",
+          "required": true,
+          "name": "target",
+          "source": "apps"
+        },
+        {
+          "type": "string",
+          "required": true,
+          "name": "mode",
+          "choices": [
+            "followDefault",
+            "single",
+            "multi"
+          ]
+        },
+        {
+          "type": "strings",
+          "required": false,
+          "name": "deviceUIDs",
+          "source": "outputs"
+        },
+        {
+          "type": "boolean",
+          "required": false,
+          "name": "allowOffline"
+        }
+      ],
+      "available": true,
+      "method": "app.routing.set",
+      "title": "Route App Audio"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "target",
+          "required": true,
+          "name": "target",
+          "source": "apps"
+        },
+        {
+          "type": "boolean",
+          "required": true,
+          "name": "enabled"
+        }
+      ],
+      "available": true,
+      "title": "Enable App EQ",
+      "method": "app.eq.setEnabled"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "target",
+          "required": true,
+          "name": "target",
+          "source": "apps"
+        }
+      ],
+      "available": true,
+      "title": "Toggle App EQ",
+      "method": "app.eq.toggle"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "target",
+          "required": true,
+          "name": "target",
+          "source": "apps"
+        },
+        {
+          "type": "number",
+          "minimum": 0,
+          "required": true,
+          "maximum": 9,
+          "name": "band"
+        },
+        {
+          "type": "number",
+          "required": true,
+          "maximum": 12,
+          "name": "gainDB",
+          "minimum": -12
+        }
+      ],
+      "available": true,
+      "title": "Set EQ Band",
+      "method": "app.eq.band.set"
+    },
+    {
+      "title": "Step EQ Band",
+      "fields": [
+        {
+          "type": "target",
+          "required": true,
+          "name": "target",
+          "source": "apps"
+        },
+        {
+          "type": "number",
+          "minimum": 0,
+          "required": true,
+          "maximum": 9,
+          "name": "band"
+        },
+        {
+          "type": "number",
+          "maximum": 24,
+          "required": true,
+          "name": "delta",
+          "minimum": -24
+        }
+      ],
+      "destructive": false,
+      "dialParameter": "delta",
+      "method": "app.eq.band.step",
+      "available": true,
+      "units": "dB"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "target",
+          "required": true,
+          "name": "target",
+          "source": "apps"
+        },
+        {
+          "type": "bands",
+          "required": true,
+          "name": "bandGains"
+        }
+      ],
+      "available": true,
+      "method": "app.eq.setBands",
+      "title": "Set EQ Bands"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "target",
+          "required": true,
+          "name": "target",
+          "source": "apps"
+        }
+      ],
+      "available": true,
+      "method": "app.eq.reset",
+      "title": "Reset App EQ"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "target",
+          "required": true,
+          "name": "target",
+          "source": "apps"
+        },
+        {
+          "type": "string",
+          "required": true,
+          "name": "presetId",
+          "source": "eqPresets"
+        }
+      ],
+      "available": true,
+      "method": "app.eq.preset.apply",
+      "title": "Apply EQ Preset"
+    },
+    {
+      "destructive": false,
+      "fields": [],
+      "available": true,
+      "method": "eq.preset.list",
+      "title": "List EQ Presets"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "string",
+          "required": true,
+          "name": "name"
+        },
+        {
+          "type": "bands",
+          "required": true,
+          "name": "bandGains"
+        }
+      ],
+      "available": true,
+      "method": "eq.preset.create",
+      "title": "Save EQ Preset"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "string",
+          "required": true,
+          "name": "presetId",
+          "source": "userPresets"
+        },
+        {
+          "type": "string",
+          "required": true,
+          "name": "name"
+        }
+      ],
+      "available": true,
+      "title": "Rename EQ Preset",
+      "method": "eq.preset.rename"
+    },
+    {
+      "destructive": true,
+      "fields": [
+        {
+          "type": "string",
+          "required": true,
+          "name": "presetId",
+          "source": "userPresets"
+        }
+      ],
+      "available": true,
+      "method": "eq.preset.delete",
+      "title": "Delete EQ Preset"
+    },
+    {
+      "destructive": false,
+      "fields": [],
+      "available": true,
+      "method": "preferences.get",
+      "title": "Read Preferences"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "preferences",
+          "required": true,
+          "name": "settings"
+        }
+      ],
+      "available": true,
+      "title": "Set FineTune Preferences",
+      "method": "preferences.patch"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "boolean",
+          "required": false,
+          "name": "enabled"
+        },
+        {
+          "type": "boolean",
+          "required": false,
+          "name": "compensation"
+        },
+        {
+          "type": "boolean",
+          "required": false,
+          "name": "equalization"
+        }
+      ],
+      "available": true,
+      "method": "loudness.set",
+      "title": "Set Loudness"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "target",
+          "required": true,
+          "name": "target",
+          "source": "apps"
+        },
+        {
+          "type": "boolean",
+          "required": true,
+          "name": "pinned"
+        }
+      ],
+      "available": true,
+      "title": "Pin App",
+      "method": "app.pin.set"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "target",
+          "required": true,
+          "name": "target",
+          "source": "apps"
+        },
+        {
+          "type": "boolean",
+          "required": true,
+          "name": "ignored"
+        }
+      ],
+      "available": true,
+      "method": "app.ignore.set",
+      "title": "Ignore App"
+    },
+    {
+      "destructive": false,
+      "fields": [],
+      "available": true,
+      "title": "Read Shortcuts",
+      "method": "shortcut.list"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "string",
+          "required": true,
+          "name": "action",
+          "choices": [
+            "togglePopup",
+            "frontmostAppVolumeUp",
+            "frontmostAppVolumeDown",
+            "frontmostAppMuteToggle"
+          ]
+        },
+        {
+          "type": "number",
+          "maximum": 127,
+          "minimum": 0,
+          "required": true,
+          "name": "keyCode"
+        },
+        {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 65535,
+          "required": true,
+          "name": "modifiers"
+        }
+      ],
+      "available": true,
+      "title": "Set Shortcut",
+      "method": "shortcut.set"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "string",
+          "required": true,
+          "name": "action",
+          "choices": [
+            "togglePopup",
+            "frontmostAppVolumeUp",
+            "frontmostAppVolumeDown",
+            "frontmostAppMuteToggle"
+          ]
+        }
+      ],
+      "available": true,
+      "title": "Clear Shortcut",
+      "method": "shortcut.clear"
+    },
+    {
+      "destructive": true,
+      "fields": [],
+      "available": true,
+      "title": "Reset All FineTune Settings",
+      "method": "settings.reset"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "string",
+          "required": true,
+          "name": "query"
+        },
+        {
+          "type": "number",
+          "required": false,
+          "minimum": 1,
+          "name": "limit",
+          "maximum": 100
+        }
+      ],
+      "available": true,
+      "method": "autoeq.search",
+      "title": "Search AutoEQ"
+    },
+    {
+      "destructive": false,
+      "fields": [],
+      "available": true,
+      "title": "List Loaded AutoEQ Profiles",
+      "method": "autoeq.list"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "string",
+          "required": true,
+          "name": "profileId",
+          "source": "autoeq"
+        }
+      ],
+      "available": true,
+      "method": "autoeq.get",
+      "title": "Get AutoEQ Profile"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "target",
+          "required": true,
+          "name": "target",
+          "source": "outputs"
+        },
+        {
+          "type": "string",
+          "required": true,
+          "name": "profileId",
+          "source": "autoeq"
+        }
+      ],
+      "available": true,
+      "method": "autoeq.device.select",
+      "title": "Select Headphone Correction"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "target",
+          "required": true,
+          "name": "target",
+          "source": "outputs"
+        }
+      ],
+      "available": true,
+      "method": "autoeq.device.clear",
+      "title": "Clear Headphone Correction"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "target",
+          "required": true,
+          "name": "target",
+          "source": "outputs"
+        },
+        {
+          "type": "boolean",
+          "required": true,
+          "name": "enabled"
+        }
+      ],
+      "available": true,
+      "method": "autoeq.device.setEnabled",
+      "title": "Enable Headphone Correction"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "boolean",
+          "required": true,
+          "name": "enabled"
+        }
+      ],
+      "available": true,
+      "title": "Set AutoEQ Preamp Compensation",
+      "method": "autoeq.preamp.set"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "string",
+          "required": true,
+          "name": "profileId",
+          "source": "autoeq"
+        },
+        {
+          "type": "boolean",
+          "required": true,
+          "name": "favorite"
+        }
+      ],
+      "available": true,
+      "title": "Favorite AutoEQ Profile",
+      "method": "autoeq.favorite.set"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "string",
+          "required": true,
+          "name": "name"
+        },
+        {
+          "type": "profileText",
+          "required": true,
+          "name": "text"
+        }
+      ],
+      "available": true,
+      "method": "autoeq.import",
+      "title": "Import Headphone Correction"
+    },
+    {
+      "destructive": true,
+      "fields": [
+        {
+          "type": "string",
+          "required": true,
+          "name": "profileId",
+          "source": "importedProfiles"
+        }
+      ],
+      "available": true,
+      "method": "autoeq.deleteImported",
+      "title": "Delete Imported Correction"
+    },
+    {
+      "destructive": false,
+      "fields": [],
+      "available": true,
+      "method": "bluetooth.list",
+      "title": "List Paired Audio Devices"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "string",
+          "required": true,
+          "name": "bluetoothId",
+          "source": "bluetooth"
+        }
+      ],
+      "available": true,
+      "title": "Connect Bluetooth Audio",
+      "method": "bluetooth.connect"
+    },
+    {
+      "destructive": false,
+      "fields": [],
+      "available": true,
+      "method": "update.status",
+      "title": "Read Update Status"
+    },
+    {
+      "destructive": false,
+      "fields": [],
+      "available": true,
+      "title": "Read Update Preferences",
+      "method": "update.getPreferences"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "boolean",
+          "required": false,
+          "name": "automaticallyChecks"
+        },
+        {
+          "type": "boolean",
+          "required": false,
+          "name": "automaticallyDownloads"
+        }
+      ],
+      "available": true,
+      "title": "Set Update Preferences",
+      "method": "update.setPreferences"
+    },
+    {
+      "destructive": false,
+      "fields": [],
+      "available": true,
+      "title": "Check FineTune Updates",
+      "method": "update.check"
+    },
+    {
+      "destructive": false,
+      "fields": [],
+      "available": true,
+      "title": "Show FineTune",
+      "method": "ui.popup.show"
+    },
+    {
+      "destructive": false,
+      "fields": [],
+      "available": true,
+      "method": "ui.popup.hide",
+      "title": "Hide FineTune"
+    },
+    {
+      "destructive": false,
+      "fields": [],
+      "available": true,
+      "title": "Toggle FineTune",
+      "method": "ui.popup.toggle"
+    },
+    {
+      "destructive": false,
+      "fields": [],
+      "available": true,
+      "method": "ui.settings.open",
+      "title": "Open FineTune Settings"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "target",
+          "required": true,
+          "name": "target",
+          "source": "apps"
+        }
+      ],
+      "available": true,
+      "title": "Open App EQ",
+      "method": "ui.eq.open"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "target",
+          "required": true,
+          "name": "target",
+          "source": "devices"
+        }
+      ],
+      "available": true,
+      "title": "Open Device Inspector",
+      "method": "ui.deviceInspector.open"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "boolean",
+          "required": true,
+          "name": "enabled"
+        }
+      ],
+      "available": true,
+      "method": "ui.editMode.set",
+      "title": "Set Edit Mode"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "string",
+          "required": true,
+          "name": "tab",
+          "choices": [
+            "input",
+            "output"
+          ]
+        }
+      ],
+      "available": true,
+      "title": "Select Device Tab",
+      "method": "ui.deviceTab.set"
+    },
+    {
+      "destructive": false,
+      "fields": [
+        {
+          "type": "target",
+          "required": true,
+          "name": "target",
+          "source": "devices"
+        }
+      ],
+      "available": true,
+      "title": "Copy Device UID",
+      "method": "device.uid.copy"
+    },
+    {
+      "destructive": false,
+      "fields": [],
+      "available": true,
+      "title": "Open macOS Audio Permissions",
+      "method": "ui.permissionSettings.open"
+    },
+    {
+      "destructive": false,
+      "fields": [],
+      "available": true,
+      "method": "ui.help.open",
+      "title": "Open FineTune Help"
+    }
+  ],
+  "snapshot": {
+    "devices": {
+      "alertVolumePercent": null,
+      "devices": [
+        {
+          "muted": null,
+          "backend": "hardware",
+          "volumePercent": null,
+          "deviceUID": "fixture-output",
+          "direction": "output",
+          "sampleRate": 0,
+          "hidden": false,
+          "availableSampleRates": [],
+          "hogModeOwner": -1,
+          "name": "Fixture Speakers",
+          "default": false
+        },
+        {
+          "muted": null,
+          "backend": "hardware",
+          "volumePercent": null,
+          "direction": "input",
+          "deviceUID": "fixture-input",
+          "sampleRate": 0,
+          "hidden": false,
+          "availableSampleRates": [],
+          "hogModeOwner": -1,
+          "name": "Fixture Microphone",
+          "default": false
+        }
+      ]
+    },
+    "preferences": {
+      "showDeviceDisconnectAlerts": true,
+      "hudStyle": "tahoe",
+      "automationEnabled": false,
+      "loudnessEqualizationEnabled": false,
+      "popupSize": "comfortable",
+      "customShortcuts": {},
+      "defaultNewAppVolume": 1,
+      "loudnessCompensationEnabled": false,
+      "launchAtLogin": false,
+      "mediaKeyControlEnabled": true,
+      "appearance": "system",
+      "volumeHotkeyStep": "normal",
+      "lockInputDevice": true,
+      "menuBarIconStyle": "Default"
+    },
+    "bluetooth": {
+      "devices": [],
+      "poweredOn": false
+    },
+    "presentation": {
+      "popupVisible": false,
+      "eqAppId": null,
+      "editMode": false,
+      "inspectorDeviceUID": null,
+      "deviceTab": "output"
+    },
+    "updates": {
+      "customBuild": false,
+      "automaticallyChecks": false,
+      "canCheck": false,
+      "automaticallyDownloads": false
+    },
+    "autoeq": {
+      "devices": [],
+      "profiles": [],
+      "preampEnabled": true,
+      "favorites": []
+    },
+    "apps": [
+      {
+        "appId": "com.example.player",
+        "muted": false,
+        "ignored": false,
+        "active": true,
+        "sliderPercent": 100,
+        "name": "Player",
+        "pinned": false,
+        "instanceIds": [
+          12345
+        ],
+        "volumePercent": 100,
+        "boost": 1
+      }
+    ],
+    "routing": [
+      {
+        "effectiveDeviceUIDs": [],
+        "singleDeviceUID": null,
+        "mode": "followDefault",
+        "deviceUIDs": [],
+        "appId": "com.example.player"
+      }
+    ],
+    "operations": [],
+    "eq": {
+      "presets": [
+        {
+          "bandGains": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "builtin": true,
+          "id": "flat",
+          "name": "Flat"
+        },
+        {
+          "bandGains": [
+            6,
+            6,
+            5,
+            -1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "id": "bassBoost",
+          "builtin": true,
+          "name": "Bass Boost"
+        },
+        {
+          "id": "bassCut",
+          "builtin": true,
+          "bandGains": [
+            -6,
+            -5,
+            -4,
+            -2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "name": "Bass Cut"
+        },
+        {
+          "id": "trebleBoost",
+          "builtin": true,
+          "bandGains": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            4,
+            5,
+            6
+          ],
+          "name": "Treble Boost"
+        },
+        {
+          "id": "vocalClarity",
+          "builtin": true,
+          "bandGains": [
+            -4,
+            -2,
+            -1,
+            -3,
+            0,
+            2,
+            4,
+            4,
+            1,
+            0
+          ],
+          "name": "Vocal Clarity"
+        },
+        {
+          "id": "podcast",
+          "builtin": true,
+          "bandGains": [
+            -6,
+            -4,
+            -2,
+            -1,
+            0,
+            2,
+            4,
+            3,
+            1,
+            0
+          ],
+          "name": "Podcast"
+        },
+        {
+          "id": "spokenWord",
+          "builtin": true,
+          "bandGains": [
+            -8,
+            -6,
+            -3,
+            -2,
+            0,
+            2,
+            4,
+            4,
+            2,
+            0
+          ],
+          "name": "Spoken Word"
+        },
+        {
+          "bandGains": [
+            5,
+            4,
+            2,
+            0,
+            -2,
+            -2,
+            0,
+            2,
+            4,
+            5
+          ],
+          "builtin": true,
+          "id": "loudness",
+          "name": "Loudness"
+        },
+        {
+          "id": "lateNight",
+          "builtin": true,
+          "bandGains": [
+            -6,
+            -4,
+            -2,
+            0,
+            0,
+            1,
+            2,
+            2,
+            1,
+            0
+          ],
+          "name": "Late Night"
+        },
+        {
+          "bandGains": [
+            3,
+            4,
+            5,
+            2,
+            0,
+            1,
+            2,
+            2,
+            1,
+            0
+          ],
+          "builtin": true,
+          "id": "smallSpeakers",
+          "name": "Small Speakers"
+        },
+        {
+          "bandGains": [
+            4,
+            3,
+            2,
+            0,
+            -1,
+            0,
+            2,
+            3,
+            2,
+            1
+          ],
+          "builtin": true,
+          "id": "rock",
+          "name": "Rock"
+        },
+        {
+          "bandGains": [
+            3,
+            3,
+            2,
+            0,
+            -1,
+            1,
+            2,
+            3,
+            3,
+            4
+          ],
+          "builtin": true,
+          "id": "pop",
+          "name": "Pop"
+        },
+        {
+          "bandGains": [
+            7,
+            6,
+            4,
+            0,
+            -2,
+            -2,
+            1,
+            3,
+            4,
+            3
+          ],
+          "builtin": true,
+          "id": "electronic",
+          "name": "Electronic"
+        },
+        {
+          "id": "jazz",
+          "bandGains": [
+            3,
+            2,
+            1,
+            0,
+            0,
+            0,
+            1,
+            2,
+            2,
+            1
+          ],
+          "builtin": true,
+          "name": "Jazz"
+        },
+        {
+          "bandGains": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            2,
+            2,
+            2
+          ],
+          "id": "classical",
+          "builtin": true,
+          "name": "Classical"
+        },
+        {
+          "bandGains": [
+            6,
+            5,
+            4,
+            0,
+            -1,
+            0,
+            2,
+            3,
+            4,
+            3
+          ],
+          "builtin": true,
+          "id": "hipHop",
+          "name": "Hip-Hop"
+        },
+        {
+          "id": "rnb",
+          "builtin": true,
+          "bandGains": [
+            4,
+            4,
+            3,
+            1,
+            -1,
+            0,
+            2,
+            3,
+            3,
+            2
+          ],
+          "name": "R&B"
+        },
+        {
+          "id": "deep",
+          "bandGains": [
+            5,
+            6,
+            4,
+            1,
+            -2,
+            -2,
+            0,
+            1,
+            2,
+            1
+          ],
+          "builtin": true,
+          "name": "Deep"
+        },
+        {
+          "id": "acoustic",
+          "bandGains": [
+            0,
+            1,
+            2,
+            2,
+            1,
+            0,
+            1,
+            2,
+            2,
+            1
+          ],
+          "builtin": true,
+          "name": "Acoustic"
+        },
+        {
+          "id": "movie",
+          "bandGains": [
+            4,
+            4,
+            3,
+            -1,
+            -1,
+            1,
+            3,
+            3,
+            2,
+            1
+          ],
+          "builtin": true,
+          "name": "Movie"
+        }
+      ],
+      "apps": [
+        {
+          "appId": "com.example.player",
+          "eq": {
+            "bandGains": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "isEnabled": true
+          }
+        }
+      ]
+    }
+  },
+  "apiVersion": 1,
+  "status": "ready",
+  "message": "Ready"
+}

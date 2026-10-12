@@ -19,15 +19,15 @@ for name in ['plugin','action','category']:
  png(root/'imgs'/f'{name}.png');png(root/'imgs'/f'{name}@2x.png',size=144)
 png(root/'imgs/muted.png',True);png(root/'imgs/muted@2x.png',True,size=144)
 actions=[('command','FineTune Command'),('app-volume','App Volume'),('app-mute','App Mute'),('app-boost','App Boost'),('routing','App Routing'),('device-volume','Device Volume'),('device-mute','Device Mute'),('device-select','Select Audio Device'),('eq-band','EQ Band'),('eq-preset','EQ Preset'),('autoeq','Headphone Correction'),('loudness','Loudness'),('management','App Management'),('popup','FineTune Popup'),('scene','Audio Scene')]
-manifest={'UUID':'com.finetune.streamdeck','Name':'FineTune','Description':'Complete local FineTune audio control, live feedback and shared Stream Deck profiles. Requires the FineTune automation API.','Author':'Adam Gell','Version':'0.1.0.0','SDKVersion':3,'CodePath':'bin/plugin.js','Icon':'imgs/plugin','Category':'FineTune','CategoryIcon':'imgs/category','URL':'https://github.com/ronitsingh10/FineTune','Software':{'MinimumVersion':'7.1'},'OS':[{'Platform':'mac','MinimumVersion':'15.4'}],'Nodejs':{'Version':'20'},'PropertyInspectorPath':'ui/index.html','Actions':[],'Profiles':[{'Name':'profiles/finetune-xl','DeviceType':2,'Readonly':False,'AutoInstall':False}]}
+manifest={'UUID':'com.finetune.streamdeck','Name':'FineTune','Description':'Complete local FineTune audio control, live feedback and shared Stream Deck profiles. Requires the FineTune automation API.','Author':'Adam Gell','Version':'0.1.0.1','SDKVersion':3,'CodePath':'bin/plugin.js','Icon':'imgs/plugin','Category':'FineTune','CategoryIcon':'imgs/category','URL':'https://github.com/ronitsingh10/FineTune','Software':{'MinimumVersion':'7.1'},'OS':[{'Platform':'mac','MinimumVersion':'15.4'}],'Nodejs':{'Version':'20'},'PropertyInspectorPath':'ui/index.html','Actions':[],'Profiles':[{'Name':'profiles/finetune-xl','DeviceType':2,'Readonly':False,'AutoInstall':False}]}
 for slug,name in actions:
- d={'UUID':'com.finetune.streamdeck.'+slug,'Name':name,'Icon':'imgs/action','Tooltip':name+' using FineTune automation.','Controllers':['Keypad'],'States':[{'Image':'imgs/action','TitleAlignment':'middle','FontSize':12},{'Image':'imgs/muted','TitleAlignment':'middle','FontSize':12}]}
+ d={'UUID':'com.finetune.streamdeck.'+slug,'Name':name,'Icon':'imgs/action','Tooltip':name+' using FineTune automation.','Controllers':['Keypad'],'States':[{'Image':'imgs/action','TitleAlignment':'middle','FontSize':10},{'Image':'imgs/muted','TitleAlignment':'middle','FontSize':10}]}
  if slug in ['command','app-volume','device-volume','eq-band']:
   d['Controllers'].append('Encoder');d['Encoder']={'layout':'$B1','TriggerDescription':{'Rotate':'Adjust value','Push':'Toggle mute (volume controls)','Touch':'Toggle mute (volume controls)'}}
  manifest['Actions'].append(d)
 (root/'manifest.json').write_text(json.dumps(manifest,indent=2))
 # A fresh export containing only our actions. No installed profiles are modified.
-profileId=str(uuid.uuid4()).upper();pageId=str(uuid.uuid4()).upper()
+profileId=str(uuid.uuid4()).upper();pageId=str(uuid.uuid4()).upper();defaultPageId=str(uuid.uuid4()).upper()
 slots=[]
 def slot(slug,label,method,group=None,params=None):
  settings={'schemaVersion':1,'method':method,'params':params or {},'label':label}
@@ -63,11 +63,15 @@ slot('command','Lock Mic','input.lock.set',params={'enabled':True})
 slot('command','Unlock Mic','input.lock.set',params={'enabled':False})
 slot('scene','Audio Scene','batch.execute',params={'commands':[]})
 assert len(slots)==32
-profile={'Device':{'Model':'20GAT9901','UUID':str(uuid.uuid4())},'Name':'FineTune XL','Pages':{'Current':'00000000-0000-0000-0000-000000000000','Default':pageId.lower(),'Pages':[]},'Version':'3.0'}
+profile={'Device':{'Model':'20GAT9901','UUID':str(uuid.uuid4())},'Name':'FineTune XL','Pages':{'Current':'00000000-0000-0000-0000-000000000000','Default':defaultPageId.lower(),'Pages':[pageId.lower()]},'Version':'3.0'}
 page={'Controllers':[{'Type':'Keypad','Actions':{}}],'Name':'FineTune XL','Icon':''}
 for i,(slug,label,settings) in enumerate(slots):
- page['Controllers'][0]['Actions'][f'{i%8},{i//8}']={'ActionID':str(uuid.uuid4()),'LinkedTitle':False,'Name':label,'Plugin':{'Name':'FineTune','UUID':'com.finetune.streamdeck','Version':'0.1.0.0'},'Resources':None,'Settings':settings,'State':0,'States':[{'FontFamily':'','FontSize':12,'FontStyle':'','FontUnderline':False,'OutlineThickness':2,'ShowTitle':True,'TitleAlignment':'middle','TitleColor':'#ffffff'}],'UUID':'com.finetune.streamdeck.'+slug}
+ page['Controllers'][0]['Actions'][f'{i%8},{i//8}']={'ActionID':str(uuid.uuid4()),'LinkedTitle':False,'Name':label,'Plugin':{'Name':'FineTune','UUID':'com.finetune.streamdeck','Version':'0.1.0.1'},'Resources':None,'Settings':settings,'State':0,'States':[{'FontFamily':'','FontSize':10,'FontStyle':'','FontUnderline':False,'OutlineThickness':2,'ShowTitle':True,'TitleAlignment':'middle','TitleColor':'#ffffff'}],'UUID':'com.finetune.streamdeck.'+slug}
 package={'AppVersion':'7.6.0','DeviceModel':'20GAT9901','DeviceSettings':None,'FormatVersion':1,'OSType':'macOS','OSVersion':'15.4','RequiredPlugins':['com.finetune.streamdeck']}
 with zipfile.ZipFile(root/'profiles/finetune-xl.streamDeckProfile','w',zipfile.ZIP_DEFLATED) as z:
  z.writestr('package.json',json.dumps(package));base=f'Profiles/{profileId}.sdProfile/'
- z.writestr(base+'manifest.json',json.dumps(profile));z.writestr(base+f'Profiles/{pageId}/manifest.json',json.dumps(page))
+ for directory in ['Profiles/',base,base+'Profiles/',base+f'Profiles/{defaultPageId}/',base+f'Profiles/{pageId}/']:
+  z.writestr(directory,'')
+ z.writestr(base+'manifest.json',json.dumps(profile))
+ z.writestr(base+f'Profiles/{defaultPageId}/manifest.json',json.dumps({'Controllers':[{'Type':'Keypad','Actions':None}],'Name':'','Icon':''}))
+ z.writestr(base+f'Profiles/{pageId}/manifest.json',json.dumps(page))

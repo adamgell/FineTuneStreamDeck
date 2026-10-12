@@ -123,10 +123,10 @@ export class CommandAction extends SingletonAction<ActionSettings> {
       return;
     }
     try {
-      const result = await client.request(settings.method!, settings.params ?? {});
+      let result = await client.request(settings.method!, settings.params ?? {});
       if (result.status === 'pending' && typeof result.operationId === 'string') {
         if (action.isKey() || action.isDial()) await action.setTitle('Pending');
-        await client.awaitOperation(result.operationId);
+        result = await client.awaitOperation(result.operationId);
       }
       if (settings.method === 'batch.execute' && Array.isArray(result.results)) {
         for (let i = 0; i < result.results.length; i++) {

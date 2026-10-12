@@ -3,7 +3,7 @@
   "Name": "FineTune",
   "Description": "Complete local FineTune audio control, live feedback and shared Stream Deck profiles. Requires the FineTune automation API.",
   "Author": "Adam Gell",
-  "Version": "0.1.0.0",
+  "Version": "0.1.0.1",
   "SDKVersion": 3,
   "CodePath": "bin/plugin.js",
   "Icon": "imgs/plugin",
@@ -37,12 +37,12 @@
         {
           "Image": "imgs/action",
           "TitleAlignment": "middle",
-          "FontSize": 12
+          "FontSize": 10
         },
         {
           "Image": "imgs/muted",
           "TitleAlignment": "middle",
-          "FontSize": 12
+          "FontSize": 10
         }
       ],
       "Encoder": {
@@ -67,12 +67,12 @@
         {
           "Image": "imgs/action",
           "TitleAlignment": "middle",
-          "FontSize": 12
+          "FontSize": 10
         },
         {
           "Image": "imgs/muted",
           "TitleAlignment": "middle",
-          "FontSize": 12
+          "FontSize": 10
         }
       ],
       "Encoder": {
@@ -96,12 +96,12 @@
         {
           "Image": "imgs/action",
           "TitleAlignment": "middle",
-          "FontSize": 12
+          "FontSize": 10
         },
         {
           "Image": "imgs/muted",
           "TitleAlignment": "middle",
-          "FontSize": 12
+          "FontSize": 10
         }
       ]
     },
@@ -117,12 +117,12 @@
         {
           "Image": "imgs/action",
           "TitleAlignment": "middle",
-          "FontSize": 12
+          "FontSize": 10
         },
         {
           "Image": "imgs/muted",
           "TitleAlignment": "middle",
-          "FontSize": 12
+          "FontSize": 10
         }
       ]
     },
@@ -138,12 +138,12 @@
         {
           "Image": "imgs/action",
           "TitleAlignment": "middle",
-          "FontSize": 12
+          "FontSize": 10
         },
         {
           "Image": "imgs/muted",
           "TitleAlignment": "middle",
-          "FontSize": 12
+          "FontSize": 10
         }
       ]
     },
@@ -160,12 +160,12 @@
         {
           "Image": "imgs/action",
           "TitleAlignment": "middle",
-          "FontSize": 12
+          "FontSize": 10
         },
         {
           "Image": "imgs/muted",
           "TitleAlignment": "middle",
-          "FontSize": 12
+          "FontSize": 10
         }
       ],
       "Encoder": {
@@ -189,12 +189,12 @@
         {
           "Image": "imgs/action",
           "TitleAlignment": "middle",
-          "FontSize": 12
+          "FontSize": 10
         },
         {
           "Image": "imgs/muted",
           "TitleAlignment": "middle",
-          "FontSize": 12
+          "FontSize": 10
         }
       ]
     },
@@ -210,12 +210,12 @@
         {
           "Image": "imgs/action",
           "TitleAlignment": "middle",
-          "FontSize": 12
+          "FontSize": 10
         },
         {
           "Image": "imgs/muted",
           "TitleAlignment": "middle",
-          "FontSize": 12
+          "FontSize": 10
         }
       ]
     },
@@ -232,12 +232,12 @@
         {
           "Image": "imgs/action",
           "TitleAlignment": "middle",
-          "FontSize": 12
+          "FontSize": 10
         },
         {
           "Image": "imgs/muted",
           "TitleAlignment": "middle",
-          "FontSize": 12
+          "FontSize": 10
         }
       ],
       "Encoder": {
@@ -261,12 +261,12 @@
         {
           "Image": "imgs/action",
           "TitleAlignment": "middle",
-          "FontSize": 12
+          "FontSize": 10
         },
         {
           "Image": "imgs/muted",
           "TitleAlignment": "middle",
-          "FontSize": 12
+          "FontSize": 10
         }
       ]
     },
@@ -282,12 +282,12 @@
         {
           "Image": "imgs/action",
           "TitleAlignment": "middle",
-          "FontSize": 12
+          "FontSize": 10
         },
         {
           "Image": "imgs/muted",
           "TitleAlignment": "middle",
-          "FontSize": 12
+          "FontSize": 10
         }
       ]
     },
@@ -303,12 +303,12 @@
         {
           "Image": "imgs/action",
           "TitleAlignment": "middle",
-          "FontSize": 12
+          "FontSize": 10
         },
         {
           "Image": "imgs/muted",
           "TitleAlignment": "middle",
-          "FontSize": 12
+          "FontSize": 10
         }
       ]
     },
@@ -324,12 +324,12 @@
         {
           "Image": "imgs/action",
           "TitleAlignment": "middle",
-          "FontSize": 12
+          "FontSize": 10
         },
         {
           "Image": "imgs/muted",
           "TitleAlignment": "middle",
-          "FontSize": 12
+          "FontSize": 10
         }
       ]
     },
@@ -345,12 +345,12 @@
         {
           "Image": "imgs/action",
           "TitleAlignment": "middle",
-          "FontSize": 12
+          "FontSize": 10
         },
         {
           "Image": "imgs/muted",
           "TitleAlignment": "middle",
-          "FontSize": 12
+          "FontSize": 10
         }
       ]
     },
@@ -366,12 +366,12 @@
         {
           "Image": "imgs/action",
           "TitleAlignment": "middle",
-          "FontSize": 12
+          "FontSize": 10
         },
         {
           "Image": "imgs/muted",
           "TitleAlignment": "middle",
-          "FontSize": 12
+          "FontSize": 10
         }
       ]
     }

@@ -1,0 +1,6 @@
+node_modules/
+com.finetune.streamdeck.sdPlugin/bin/
+com.finetune.streamdeck.sdPlugin/logs/
+dist/
+build/
+.superpowers/

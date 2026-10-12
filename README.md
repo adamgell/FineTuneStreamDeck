@@ -16,7 +16,7 @@ Use the supplied configuration screens to select routes, correction profiles, pr
 
 macOS 15.4+, Stream Deck 7.1+, Node 20 plugin runtime (SDK 3.0.2 supports Node 20.5.1+), FineTune automation API v1. Initial software acceptance target is Stream Deck 7.6.0 and hardware target is XL. Keys are supported; compatible numeric actions also expose dial/push/touch controls on dial-equipped models, with physical dial testing recorded separately.
 
-The plugin displays offline, configure, unavailable, pending, and error states. It uses authoritative snapshots. Lost toggles/steps are not replayed. Scene results can be partial; they are not transactions.
+Keys use a dark vector design with group colors, distinct action icons, compact labels and large live readings. Text is rendered into the image to avoid host-title overlap; unchanged images are cached. The plugin displays offline, configure, unavailable, pending, and error states. It uses authoritative snapshots. Lost toggles/steps are not replayed. Scene results can be partial; they are not transactions.
 
 The complete custom FineTune branch works independently of upstream PR acceptance. Stock builds without the API cannot supply these plugin controls. See the custom build and rollback guide alongside the app.
 

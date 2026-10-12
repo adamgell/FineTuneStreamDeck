@@ -20,6 +20,9 @@ import {
   resourceKey,
   resolveGroupSettings,
 } from '../controls/settings.js';
+import { renderKeySVG } from '../controls/key-visuals.js';
+const keyImages = new WeakMap<object, string>();
+
 import { summarizeBatch } from '../controls/scenes.js';
 import { DialAccumulator } from '../controls/dial-accumulator.js';
 
@@ -103,15 +106,26 @@ export class CommandAction extends SingletonAction<ActionSettings> {
         ? validateSettings(effective, client.state.methods)
         : undefined;
     const label = typeof settings.label === 'string' ? settings.label : feedback.title;
-    const title = valid && !valid.ok ? `${label}\nConfigure` : `${label}\n${feedback.value}`;
     if (action.isDial()) {
       await action.setFeedback({
         title: label,
         value: valid && !valid.ok ? 'Configure' : feedback.value,
       });
     } else if (action.isKey()) {
-      await action.setTitle(client.state.status === 'ready' ? title : feedback.title);
-      if (action.isKey()) await action.setState(feedback.muted ? 1 : 0);
+      const visual = renderKeySVG(
+        effective,
+        valid && !valid.ok
+          ? { ...feedback, title: 'Configure', value: 'Configure', unavailable: false }
+          : feedback,
+      );
+      if (keyImages.get(action) !== visual) {
+        await action.setState(feedback.muted ? 1 : 0);
+        await action.setTitle('');
+        await action.setImage(
+          'data:image/svg+xml;base64,' + Buffer.from(visual).toString('base64'),
+        );
+        keyImages.set(action, visual);
+      }
     }
   }
   private async run(action: Action<ActionSettings>, raw: ActionSettings, override?: string) {
@@ -125,7 +139,16 @@ export class CommandAction extends SingletonAction<ActionSettings> {
     try {
       let result = await client.request(settings.method!, settings.params ?? {});
       if (result.status === 'pending' && typeof result.operationId === 'string') {
-        if (action.isKey() || action.isDial()) await action.setTitle('Pending');
+        if (action.isKey()) {
+          keyImages.delete(action);
+          const pending = renderKeySVG(settings, {
+            ...renderFeedback(settings, client.state),
+            value: 'Pending',
+          });
+          await action.setImage(
+            'data:image/svg+xml;base64,' + Buffer.from(pending).toString('base64'),
+          );
+        } else if (action.isDial()) await action.setTitle('Pending');
         result = await client.awaitOperation(result.operationId);
       }
       if (settings.method === 'batch.execute' && Array.isArray(result.results)) {

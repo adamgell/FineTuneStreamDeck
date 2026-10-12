@@ -3,7 +3,7 @@
   "Name": "FineTune",
   "Description": "Complete local FineTune audio control, live feedback and shared Stream Deck profiles. Requires the FineTune automation API.",
   "Author": "Adam Gell",
-  "Version": "0.1.0.1",
+  "Version": "0.1.0.2",
   "SDKVersion": 3,
   "CodePath": "bin/plugin.js",
   "Icon": "imgs/plugin",

@@ -106,3 +106,35 @@ it('shows whether headphone correction is enabled', () => {
     ).value,
   ).toBe('Off');
 });
+
+import { resourceKey } from '../src/controls/settings.js';
+it('keeps input, output, selectors and duplex dial identities separate', () => {
+  const key = (target: any) => resourceKey({ method: 'device.volume.step', params: { target } });
+  expect(key({ selector: 'defaultInput' })).not.toBe(key({ selector: 'defaultOutput' }));
+  expect(key({ deviceUID: 'duplex', direction: 'input' })).not.toBe(
+    key({ deviceUID: 'duplex', direction: 'output' }),
+  );
+});
+it('shows alert volume and route state without borrowing speaker volume', () => {
+  const state: any = {
+    status: 'ready',
+    message: 'Ready',
+    methods: [{ method: 'alert.volume.step', title: 'Alert Volume', fields: [] }],
+    snapshot: {
+      devices: {
+        alertVolumePercent: 15,
+        devices: [{ name: 'Speakers', direction: 'output', default: true, volumePercent: 80 }],
+      },
+      apps: [{ appId: 'player', name: 'Player', volumePercent: 30 }],
+      routing: [{ appId: 'player', mode: 'followDefault', deviceUIDs: [] }],
+    },
+  };
+  expect(renderFeedback({ method: 'alert.volume.step' }, state)).toMatchObject({
+    title: 'Alert Volume',
+    value: '15%',
+  });
+  expect(
+    renderFeedback({ method: 'app.routing.set', params: { target: { appId: 'player' } } }, state)
+      .value,
+  ).toBe('System output');
+});

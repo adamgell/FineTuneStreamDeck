@@ -20,7 +20,7 @@
     }
   ],
   "Nodejs": {
-    "Version": "24"
+    "Version": "20"
   },
   "PropertyInspectorPath": "ui/index.html",
   "Actions": [

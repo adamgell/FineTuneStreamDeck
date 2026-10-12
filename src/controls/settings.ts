@@ -87,6 +87,7 @@ export function targetState(
   state: ConnectionState,
 ): JsonObject | undefined {
   const t = object(settings.params?.target);
+  if (!t) return undefined;
   const apps = state.snapshot?.apps;
   if ((t?.appId || t?.selector === 'audibleApp') && Array.isArray(apps))
     return apps.map(object).find((a) => a?.appId === (t.appId ?? state.snapshot?.resolvedAppId));
@@ -123,7 +124,8 @@ export function renderFeedback(
   if (object(settings.params?.target) && !target)
     return { title: 'Unavailable', value: '—', muted: false, unavailable: true };
   let value = '';
-  if (typeof target?.volumePercent === 'number') value = `${Math.round(target.volumePercent)}%`;
+  if (settings.method?.includes('.volume.') && typeof target?.volumePercent === 'number')
+    value = `${Math.round(target.volumePercent)}%`;
   if (settings.method?.includes('boost'))
     value = typeof target?.boost === 'number' ? `${target.boost}×` : '';
   if (settings.method?.includes('mute')) value = target?.muted === true ? 'Muted' : 'On';
@@ -159,6 +161,39 @@ export function renderFeedback(
     const selection = object(entry?.selection);
     value = selection ? (selection.isEnabled === true ? 'On' : 'Off') : 'None';
   }
+  if (settings.method?.startsWith('alert.volume.')) {
+    const percent = object(state.snapshot?.devices)?.alertVolumePercent;
+    value = typeof percent === 'number' ? `${Math.round(percent)}%` : '—';
+  }
+  if (settings.method === 'app.routing.set') {
+    const routes = state.snapshot?.routing;
+    const route = Array.isArray(routes)
+      ? routes.map(object).find((r) => r?.appId === appId)
+      : undefined;
+    const uids = route?.deviceUIDs;
+    const devices = object(state.snapshot?.devices)?.devices;
+    value =
+      route?.mode === 'followDefault'
+        ? 'System output'
+        : Array.isArray(uids)
+          ? uids
+              .map((uid) =>
+                Array.isArray(devices)
+                  ? String(
+                      devices
+                        .map(object)
+                        .find((d) => d?.deviceUID === uid && d?.direction === 'output')?.name ??
+                        'Unavailable',
+                    )
+                  : 'Unavailable',
+              )
+              .join(' + ')
+          : '—';
+  }
+  if (settings.method === 'input.lock.set')
+    value = object(state.snapshot?.preferences)?.lockInputDevice === true ? 'Locked' : 'Unlocked';
+  if (settings.method === 'autoeq.preamp.set')
+    value = object(state.snapshot?.autoeq)?.preampEnabled === true ? 'On' : 'Off';
   if (settings.method === 'loudness.set') {
     const prefs = object(state.snapshot?.preferences);
     value =
@@ -188,7 +223,16 @@ export function renderFeedback(
 }
 export function resourceKey(settings: ActionSettings): string {
   const t = object(settings.params?.target);
-  return String(t?.appId ?? t?.deviceUID ?? settings.method ?? 'default');
+  return JSON.stringify(
+    t
+      ? {
+          appId: t.appId,
+          deviceUID: t.deviceUID,
+          selector: t.selector,
+          direction: t.direction ?? (t.deviceUID ? 'output' : undefined),
+        }
+      : { method: settings.method },
+  );
 }
 export function asObject(value: JsonValue | undefined) {
   return object(value);

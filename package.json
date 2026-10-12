@@ -10,7 +10,7 @@
     "lint": "tsc --noEmit",
     "build": "node scripts/build.mjs",
     "validate": "streamdeck validate com.finetune.streamdeck.sdPlugin",
-    "pack": "streamdeck pack com.finetune.streamdeck.sdPlugin --output dist --no-update-check"
+    "pack": "streamdeck pack com.finetune.streamdeck.sdPlugin --output dist --no-update-check --force"
   },
   "dependencies": {
     "@elgato/streamdeck": "3.0.2"

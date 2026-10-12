@@ -89,7 +89,8 @@ export class FineTuneClient {
       socket.on('error', () => {});
       socket.on('close', () => {
         if (this.socket !== socket) return;
-        this.publish({ ...this.state, status: 'disconnected', message: 'FineTune offline' });
+        if (this.state.status !== 'incompatible')
+          this.publish({ ...this.state, status: 'disconnected', message: 'FineTune offline' });
         this.rejectPending();
         this.schedule();
       });

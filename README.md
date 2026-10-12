@@ -14,7 +14,7 @@ Use the supplied configuration screens to select routes, correction profiles, pr
 
 ## Compatibility and status
 
-macOS 15.4+, Stream Deck 7.1+, Node 24 plugin runtime, FineTune automation API v1. Initial software acceptance target is Stream Deck 7.6.0 and hardware target is XL. Keys are supported; compatible numeric actions also expose dial/push/touch controls on dial-equipped models, with physical dial testing recorded separately.
+macOS 15.4+, Stream Deck 7.1+, Node 20 plugin runtime (SDK 3.0.2 supports Node 20.5.1+), FineTune automation API v1. Initial software acceptance target is Stream Deck 7.6.0 and hardware target is XL. Keys are supported; compatible numeric actions also expose dial/push/touch controls on dial-equipped models, with physical dial testing recorded separately.
 
 The plugin displays offline, configure, unavailable, pending, and error states. It uses authoritative snapshots. Lost toggles/steps are not replayed. Scene results can be partial; they are not transactions.
 

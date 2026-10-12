@@ -40,11 +40,20 @@ window.connectElgatoStreamDeckSocket = function (port, uuid, event, appInfo, act
       settings = p.settings ?? settings;
       render();
     } else if (p.event === 'state') {
-      const hadMethods = state.methods?.length;
+      const changed = formSources(state, groups) !== formSources(p.state, p.groups ?? groups);
+      if (changed && $('method').value)
+        settings = {
+          ...settings,
+          method: $('method').value,
+          group: $('group').value,
+          step: Number($('step').value),
+          pushMethod: $('push').value,
+          params: readParams(),
+        };
       state = p.state;
       groups = p.groups ?? groups;
       status();
-      if (!hadMethods && state.methods?.length) render();
+      if (changed) render();
     } else if (p.event === 'autoeqSearch') {
       searchResults = p.result.entries ?? [];
       renderFields();
@@ -52,6 +61,23 @@ window.connectElgatoStreamDeckSocket = function (port, uuid, event, appInfo, act
     else if (p.event === 'result') $('result').textContent = summary(p.result);
   };
 };
+function formSources(value, targets) {
+  const s = value.snapshot ?? {};
+  return JSON.stringify({
+    methods: value.methods,
+    groups: targets,
+    apps: (s.apps ?? []).map((a) => ({ appId: a.appId, name: a.name, active: a.active })),
+    devices: (s.devices?.devices ?? []).map((d) => ({
+      deviceUID: d.deviceUID,
+      name: d.name,
+      direction: d.direction,
+    })),
+    presets: s.eq?.presets,
+    profiles: s.autoeq?.profiles,
+    bluetooth: s.bluetooth?.devices,
+    preferenceKeys: Object.keys(s.preferences ?? {}),
+  });
+}
 function status() {
   $('status').textContent = state.message ?? 'Offline';
   $('setup').hidden = state.status === 'ready';
@@ -153,9 +179,11 @@ function inputField(field, value, parent) {
     select.multiple = field.type === 'strings';
     if (!select.multiple) select.add(new Option('Choose…', ''));
     const items = source(field.source ?? (field.type === 'target' ? 'apps' : ''));
-    if(field.type==='target'&&['devices','outputs','inputs'].includes(field.source)) {
-      if(field.source!=='inputs')items.push({value:{selector:'defaultOutput'},name:'Current system output'});
-      if(field.source!=='outputs')items.push({value:{selector:'defaultInput'},name:'Current system input'});
+    if (field.type === 'target' && ['devices', 'outputs', 'inputs'].includes(field.source)) {
+      if (field.source !== 'inputs')
+        items.push({ value: { selector: 'defaultOutput' }, name: 'Current system output' });
+      if (field.source !== 'outputs')
+        items.push({ value: { selector: 'defaultInput' }, name: 'Current system input' });
     }
     const picked = field.type === 'target' ? JSON.stringify(value) : value;
     for (const item of items) {
@@ -166,6 +194,13 @@ function inputField(field, value, parent) {
       if (Array.isArray(value)) option.selected = value.includes(item.id);
       select.add(option);
     }
+    if (select.multiple && Array.isArray(value))
+      for (const id of value)
+        if (!Array.from(select.options).some((o) => o.value === id)) {
+          const option = new Option('Unavailable: ' + id, id);
+          option.selected = true;
+          select.add(option);
+        }
     if (field.type === 'target' && settings.group) value = groups[settings.group] ?? value;
     if (!select.multiple) {
       const current = field.type === 'target' ? JSON.stringify(value) : value;

@@ -34,7 +34,18 @@ function inspector(settings: Record<string, unknown> = {}, fixture = catalog) {
       payload: { event: 'catalog', state: fixture, groups: {}, settings },
     }),
   });
-  return { dom, sent, document: dom.window.document };
+  return {
+    dom,
+    sent,
+    document: dom.window.document,
+    update: (state: any) =>
+      ws.onmessage({
+        data: JSON.stringify({
+          event: 'sendToPropertyInspector',
+          payload: { event: 'state', state },
+        }),
+      }),
+  };
 }
 it('renders an actual form for every advertised API command', () => {
   const { dom, document } = inspector();
@@ -109,5 +120,36 @@ it('saves device priority in the user-selected order', () => {
     'fixture-b',
     'fixture-a',
   ]);
+  dom.window.close();
+});
+
+it('preserves disconnected route destinations on save', () => {
+  const { dom, sent, document } = inspector({
+    method: 'app.routing.set',
+    params: {
+      target: { appId: 'com.example.player' },
+      mode: 'single',
+      deviceUIDs: ['offline-speakers'],
+      allowOffline: true,
+    },
+  });
+  (document.getElementById('save') as HTMLButtonElement).click();
+  expect(sent.findLast((m) => m.event === 'setSettings')?.payload.params.deviceUIDs).toEqual([
+    'offline-speakers',
+  ]);
+  dom.window.close();
+});
+it('refreshes sources and schema after connecting while preserving edits', () => {
+  const offline = { ...catalog, snapshot: undefined };
+  const { dom, document, update, sent } = inspector(
+    { method: 'app.volume.set', params: { target: { appId: 'com.example.player' }, percent: 30 } },
+    offline,
+  );
+  const number = document.querySelector('#fields input[type=number]') as HTMLInputElement;
+  number.value = '42';
+  update(catalog);
+  expect(document.querySelector('#fields')?.textContent).toContain('Player');
+  (document.getElementById('save') as HTMLButtonElement).click();
+  expect(sent.findLast((m) => m.event === 'setSettings')?.payload.params.percent).toBe(42);
   dom.window.close();
 });

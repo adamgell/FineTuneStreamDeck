@@ -5,3 +5,5 @@ Automated: socket negotiation/reconnect/no replay; range and target validation; 
 The target profile is a 32-key Stream Deck XL profile. Physical key/audio acceptance, two outputs/five simultaneous apps, hot-plug and actual hardware tiers require the final custom app with its legitimate permission. Automated tests do not prove those. Dial/touch functionality is implemented and simulated; physical acceptance requires appropriate hardware.
 
 No existing user profile is overwritten. Group targets are stored in plugin global settings, and operation parameters stay in each supplied action's configuration.
+
+Final review regressions cover separate selector/direction dial identities, actual alert/routing feedback, offline route preservation, and reconnect source refresh with unsaved values retained. The compiled bundle completed registerPlugin and global-settings handshake under Stream Deck's bundled Node 20.20.0 against a simulated host socket. This proves bootstrap compatibility, not registration in the actual running host or physical key acceptance.
